@@ -1,38 +1,107 @@
+/* Clean CSS file for Volunteer Portal */
+body,
+html,
+#root,
 .App {
+  height: 100%;
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  background: linear-gradient(135deg, #a2c2e1, #f6f6f6);
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.auth-card {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 350px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.btn-primary {
+  background-color: #4b6cb7;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-primary:hover {
+  background-color: #395591;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #4b6cb7;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+.switch-text {
+  margin-top: 10px;
+}
+
+.dashboard {
+  padding: 40px;
+  color: #333;
+}
+
+.dashboard-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.btn-secondary {
+  background-color: #ccc;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #999;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.events-section {
+  margin-top: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.event-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }

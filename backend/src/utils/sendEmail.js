@@ -2,27 +2,28 @@ import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 dotenv.config();
 
-export const sendEmail = async (to, subject, text) => {
+const transporter = nodemailer.createTransport({
+  host: process.env.MAILTRAP_HOST,
+  port: Number(process.env.MAILTRAP_PORT) || 2525,
+  auth: {
+    user: process.env.MAILTRAP_USER,
+    pass: process.env.MAILTRAP_PASS,
+  },
+  // secure: false (default for port 2525)
+});
+
+export const sendEmail = async (to, subject, htmlOrText) => {
   try {
-    const transporter = nodemailer.createTransport({
-      host: process.env.MAILTRAP_HOST,
-      port: process.env.MAILTRAP_PORT,
-      auth: {
-        user: process.env.MAILTRAP_USER,
-        pass: process.env.MAILTRAP_PASS,
-      },
-    });
-
-    const mailOptions = {
-      from: '"Volunteer Portal" <no-reply@volunteerportal.com>',
-      to,
+    const info = await transporter.sendMail({
+      from: '"Volunteer Portal" <no-reply@volunteer-portal.test>',
+      to, // any "to" is fine — Mailtrap will capture it
       subject,
-      text,
-    };
-
-    await transporter.sendMail(mailOptions);
-    console.log(`📧 Email sent to ${to}`);
+      html: htmlOrText, // you can pass plain text or HTML
+    });
+    console.log("Mail sent (Mailtrap):", info.messageId);
+    return info;
   } catch (err) {
-    console.error("❌ Email send error:", err.message);
+    console.error("Error sending email:", err.message);
+    throw err;
   }
 };

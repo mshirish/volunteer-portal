@@ -45,6 +45,18 @@ const createTables = async () => {
       );
     `);
 
+    // Announcements table
+    await pool.query(`
+      CREATE TABLE announcements (
+       announcement_id SERIAL PRIMARY KEY,
+       event_id INT REFERENCES events(event_id) ON DELETE CASCADE,
+       title VARCHAR(255) NOT NULL,
+       message TEXT NOT NULL,
+       visibility VARCHAR(20) CHECK (visibility IN ('public', 'registered')) DEFAULT 'public',
+       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
     console.log("✅ Tables created successfully");
     process.exit(0);
   } catch (err) {
